@@ -1,0 +1,18 @@
+26-Jul-24 05:25:25 PM System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at BankaSpotNew.Branch.ShowDisbursedCases.<BindGrid>b__1_2(Case_Add x) in F:\Jasdeep\WebSites\BankaSpotNew\Branch\ShowDisbursedCases.aspx.cs:line 45
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at BankaSpotNew.Branch.ShowDisbursedCases.BindGrid(Int32 id) in F:\Jasdeep\WebSites\BankaSpotNew\Branch\ShowDisbursedCases.aspx.cs:line 48
+   at BankaSpotNew.Branch.ShowDisbursedCases.Page_Load(Object sender, EventArgs e) in F:\Jasdeep\WebSites\BankaSpotNew\Branch\ShowDisbursedCases.aspx.cs:line 20
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.branch_showdisbursedcases_aspx.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+

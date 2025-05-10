@@ -1,0 +1,2502 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BankaSpotNew</RootNamespace>
+    <AssemblyName>BankaSpotNew</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerLaunchUrl>http://{ServiceIPAddress}</DockerLaunchUrl>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.1.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.28.2.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.28.2\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.Streams.1.3.8\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlConnector.2.3.7\lib\net48\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO" />
+    <Reference Include="System.IO.Pipelines, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.8.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms" />
+    <Reference Include="System.Security.Cryptography.Encoding" />
+    <Reference Include="System.Security.Cryptography.Primitives" />
+    <Reference Include="System.Security.Cryptography.X509Certificates" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccountantLogin.aspx" />
+    <Content Include="Accountant\AddBanker.aspx" />
+    <Content Include="Accountant\AddExpenses.aspx" />
+    <Content Include="Accountant\ChangePassword.aspx" />
+    <Content Include="Accountant\Logout.aspx" />
+    <Content Include="Accountant\MakeConnectorWithDrawal.aspx" />
+    <Content Include="Accountant\MakeEmployeeWithdrawal.aspx" />
+    <Content Include="Accountant\MakeFreealncerWithdrawal.aspx" />
+    <Content Include="Accountant\MakeMarketEmpWithdrawal.aspx" />
+    <Content Include="Accountant\MarketingEmpPaidPayouts.aspx" />
+    <Content Include="Accountant\MarketingEmpPayouts.aspx" />
+    <Content Include="Accountant\ShowAllCases.aspx" />
+    <Content Include="Accountant\ShowConnectorPaidPayouts.aspx" />
+    <Content Include="Accountant\ShowConnectorPayouts.aspx" />
+    <Content Include="Accountant\ShowConnectors.aspx" />
+    <Content Include="Accountant\ShowEmployeePaidPayouts.aspx" />
+    <Content Include="Accountant\ShowEmployeePayout.aspx" />
+    <Content Include="Accountant\ShowEmployees.aspx" />
+    <Content Include="Accountant\ShowFreelancerPaidPayouts.aspx" />
+    <Content Include="Accountant\ShowFreelancerPayout.aspx" />
+    <Content Include="Accountant\ShowFreelancers.aspx" />
+    <Content Include="Accountant\ShowMarketingEmp.aspx" />
+    <Content Include="Accountant\UpdatePayoutStatus.aspx" />
+    <Content Include="Admin\AddAccountant.aspx" />
+    <Content Include="Admin\AddBankCodes.aspx" />
+    <Content Include="Admin\AddBanker.aspx" />
+    <Content Include="Admin\AddBranch.aspx" />
+    <Content Include="Admin\AddCaseStatus.aspx" />
+    <Content Include="Admin\AddConnectorPayoutSlab.aspx" />
+    <Content Include="Admin\AddEmpPayoutSlab.aspx" />
+    <Content Include="Admin\AddProducts.aspx" />
+    <Content Include="Admin\AddRegion.aspx" />
+    <Content Include="Admin\AddSliders.aspx" />
+    <Content Include="Admin\AddStaff.aspx" />
+    <Content Include="Admin\ChangePassword.aspx" />
+    <Content Include="Admin\ConnectorsList.aspx" />
+    <Content Include="Admin\ConnectorsListForMapping.aspx" />
+    <Content Include="Admin\DownloadConnectorDocs.aspx" />
+    <Content Include="Admin\DownloadFreelancerDocs.aspx" />
+    <Content Include="Admin\EmployeeListForMapping.aspx" />
+    <Content Include="Admin\EmployeesList.aspx" />
+    <Content Include="Admin\FreelancerListForMapping.aspx" />
+    <Content Include="Admin\FreelancersList.aspx" />
+    <Content Include="Admin\Logout.aspx" />
+    <Content Include="Admin\MakeConnectorWithDrawal.aspx" />
+    <Content Include="Admin\MakeEmployeeWithdrawal.aspx" />
+    <Content Include="Admin\MakeFreealncerWithdrawal.aspx" />
+    <Content Include="Admin\MakeMarketEmpWithdrawal.aspx" />
+    <Content Include="Admin\MapConnectorToBranch.aspx" />
+    <Content Include="Admin\MapEmpToBranch.aspx" />
+    <Content Include="Admin\MapFreelancerToBranch.aspx" />
+    <Content Include="Admin\MarketingEmpPaidPayouts.aspx" />
+    <Content Include="Admin\MarketingEmpPayouts.aspx" />
+    <Content Include="Admin\ShowAllCases.aspx" />
+    <Content Include="Admin\ShowBranches.aspx" />
+    <Content Include="Admin\ShowConnectorPaidPayouts.aspx" />
+    <Content Include="Admin\ShowConnectorPayouts.aspx" />
+    <Content Include="Admin\ShowConnectors.aspx" />
+    <Content Include="Admin\ShowCustomers.aspx" />
+    <Content Include="Admin\ShowEmployeePaidPayouts.aspx" />
+    <Content Include="Admin\ShowEmployeePayout.aspx" />
+    <Content Include="Admin\ShowEmployees.aspx" />
+    <Content Include="Admin\ShowFreelancerPaidPayouts.aspx" />
+    <Content Include="Admin\ShowFreelancerPayout.aspx" />
+    <Content Include="Admin\ShowFreelancers.aspx" />
+    <Content Include="Admin\ShowLoanQueries.aspx" />
+    <Content Include="Admin\ShowMarketingEmp.aspx" />
+    <Content Include="Admin\ShowRegion.aspx" />
+    <Content Include="Admin\TransferCaseToBranch.aspx" />
+    <Content Include="Admin\UpdatePayoutStatus.aspx" />
+    <Content Include="AppIndex.aspx" />
+    <Content Include="assets\css\app.min.css" />
+    <Content Include="assets\css\app.min_modified.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\icons.min.css" />
+    <Content Include="assets\fonts\boxiconsd41d.svg" />
+    <Content Include="assets\fonts\fa-brands-400.svg" />
+    <Content Include="assets\fonts\fa-regular-400.svg" />
+    <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\fonts\feathere8ab.svg" />
+    <Content Include="assets\fonts\remixicon7c01.svg" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="assets\images\animat-diamond-color.gif" />
+    <Content Include="assets\images\animat-rocket-color.gif" />
+    <Content Include="assets\images\brands\bitbucket.png" />
+    <Content Include="assets\images\brands\dribbble.png" />
+    <Content Include="assets\images\brands\dropbox.png" />
+    <Content Include="assets\images\brands\g-suite.png" />
+    <Content Include="assets\images\brands\github.png" />
+    <Content Include="assets\images\brands\slack.png" />
+    <Content Include="assets\images\companies\airbnb.png" />
+    <Content Include="assets\images\companies\amazon.png" />
+    <Content Include="assets\images\companies\apple.png" />
+    <Content Include="assets\images\companies\cisco.png" />
+    <Content Include="assets\images\companies\facebook.png" />
+    <Content Include="assets\images\companies\google.png" />
+    <Content Include="assets\images\email\1.png" />
+    <Content Include="assets\images\email\2.png" />
+    <Content Include="assets\images\email\3.png" />
+    <Content Include="assets\images\error.svg" />
+    <Content Include="assets\images\favicon.ico" />
+    <Content Include="assets\images\file-icons\avi.svg" />
+    <Content Include="assets\images\file-icons\dll.svg" />
+    <Content Include="assets\images\file-icons\eps.svg" />
+    <Content Include="assets\images\file-icons\pdf.svg" />
+    <Content Include="assets\images\file-icons\png.svg" />
+    <Content Include="assets\images\file-icons\psd.svg" />
+    <Content Include="assets\images\file-icons\sql.svg" />
+    <Content Include="assets\images\file-icons\txt.svg" />
+    <Content Include="assets\images\file-icons\zip.svg" />
+    <Content Include="assets\images\flags\germany.jpg" />
+    <Content Include="assets\images\flags\italy.jpg" />
+    <Content Include="assets\images\flags\russia.jpg" />
+    <Content Include="assets\images\flags\spain.jpg" />
+    <Content Include="assets\images\flags\us.jpg" />
+    <Content Include="assets\images\logo-dark.png" />
+    <Content Include="assets\images\logo-light.png" />
+    <Content Include="assets\images\logo-sm-dark.png" />
+    <Content Include="assets\images\logo-sm.png" />
+    <Content Include="assets\images\megamenu-bg.png" />
+    <Content Include="assets\images\products\product-1.png" />
+    <Content Include="assets\images\products\product-2.png" />
+    <Content Include="assets\images\products\product-3.png" />
+    <Content Include="assets\images\products\product-4.png" />
+    <Content Include="assets\images\products\product-5.png" />
+    <Content Include="assets\images\products\product-6.png" />
+    <Content Include="assets\images\products\product-7.png" />
+    <Content Include="assets\images\products\product-8.png" />
+    <Content Include="assets\images\small\img-1.jpg" />
+    <Content Include="assets\images\small\img-2.jpg" />
+    <Content Include="assets\images\small\img-3.jpg" />
+    <Content Include="assets\images\small\img-4.jpg" />
+    <Content Include="assets\images\small\img-5.jpg" />
+    <Content Include="assets\images\small\img-6.jpg" />
+    <Content Include="assets\images\small\img-7.jpg" />
+    <Content Include="assets\images\users\avatar-1.jpg" />
+    <Content Include="assets\images\users\avatar-10.jpg" />
+    <Content Include="assets\images\users\avatar-2.jpg" />
+    <Content Include="assets\images\users\avatar-3.jpg" />
+    <Content Include="assets\images\users\avatar-4.jpg" />
+    <Content Include="assets\images\users\avatar-5.jpg" />
+    <Content Include="assets\images\users\avatar-6.jpg" />
+    <Content Include="assets\images\users\avatar-7.jpg" />
+    <Content Include="assets\images\users\avatar-8.jpg" />
+    <Content Include="assets\images\users\avatar-9.jpg" />
+    <Content Include="assets\js\app.min.js" />
+    <Content Include="assets\js\app.min_modified.js" />
+    <Content Include="assets\js\pages\add-product.init.js" />
+    <Content Include="assets\js\pages\apexcharts.init.js" />
+    <Content Include="assets\js\pages\c3.init.js" />
+    <Content Include="assets\js\pages\calendar.init.js" />
+    <Content Include="assets\js\pages\chartist.init.js" />
+    <Content Include="assets\js\pages\chartjs.init.js" />
+    <Content Include="assets\js\pages\coming-soon.init.js" />
+    <Content Include="assets\js\pages\customers.init.js" />
+    <Content Include="assets\js\pages\dashboard-analytics.init.js" />
+    <Content Include="assets\js\pages\dashboard-crm.init.js" />
+    <Content Include="assets\js\pages\dashboard-sales.init.js" />
+    <Content Include="assets\js\pages\datatables.init.js" />
+    <Content Include="assets\js\pages\ecommerce-cart.init.js" />
+    <Content Include="assets\js\pages\ecommerce-checkout.init.js" />
+    <Content Include="assets\js\pages\email.init.js" />
+    <Content Include="assets\js\pages\flot.init.js" />
+    <Content Include="assets\js\pages\fontawesome.init.js" />
+    <Content Include="assets\js\pages\foo-tables.init.js" />
+    <Content Include="assets\js\pages\form-advanced.init.js" />
+    <Content Include="assets\js\pages\form-fileuploads.init.js" />
+    <Content Include="assets\js\pages\form-masks.init.js" />
+    <Content Include="assets\js\pages\form-pickers.init.js" />
+    <Content Include="assets\js\pages\form-quilljs.init.js" />
+    <Content Include="assets\js\pages\form-validation.init.js" />
+    <Content Include="assets\js\pages\form-wizard.init.js" />
+    <Content Include="assets\js\pages\form-xeditable.init.js" />
+    <Content Include="assets\js\pages\gallery.init.js" />
+    <Content Include="assets\js\pages\google-maps.init.js" />
+    <Content Include="assets\js\pages\inbox.js" />
+    <Content Include="assets\js\pages\jquery.chat.js" />
+    <Content Include="assets\js\pages\jquery.todo.js" />
+    <Content Include="assets\js\pages\kanban.init.js" />
+    <Content Include="assets\js\pages\mapeal-maps.init.js" />
+    <Content Include="assets\js\pages\materialdesign.init.js" />
+    <Content Include="assets\js\pages\morris.init.js" />
+    <Content Include="assets\js\pages\nestable.init.js" />
+    <Content Include="assets\js\pages\peity.init.js" />
+    <Content Include="assets\js\pages\product-list.init.js" />
+    <Content Include="assets\js\pages\range-sliders.init.js" />
+    <Content Include="assets\js\pages\remix-icons.init.js" />
+    <Content Include="assets\js\pages\responsive-table.init.js" />
+    <Content Include="assets\js\pages\sparkline.init.js" />
+    <Content Include="assets\js\pages\sweet-alerts.init.js" />
+    <Content Include="assets\js\pages\tabledit.init.js" />
+    <Content Include="assets\js\pages\tablesaw.init.js" />
+    <Content Include="assets\js\pages\tickets.init.js" />
+    <Content Include="assets\js\pages\toastr.init.js" />
+    <Content Include="assets\js\pages\tour.init.js" />
+    <Content Include="assets\js\pages\treeview.init.js" />
+    <Content Include="assets\js\pages\vector-maps.init.js" />
+    <Content Include="assets\js\pages\widgets.init.js" />
+    <Content Include="assets\js\vendor.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\bootstrap\main.min.css" />
+    <Content Include="assets\libs\%40fullcalendar\bootstrap\main.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\core\main.min.css" />
+    <Content Include="assets\libs\%40fullcalendar\core\main.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\daygrid\main.min.css" />
+    <Content Include="assets\libs\%40fullcalendar\daygrid\main.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\interaction\main.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\list\main.min.css" />
+    <Content Include="assets\libs\%40fullcalendar\list\main.min.js" />
+    <Content Include="assets\libs\%40fullcalendar\timegrid\main.min.css" />
+    <Content Include="assets\libs\%40fullcalendar\timegrid\main.min.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-au-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-ca-lcc-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-es-merc.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-es-mill.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-europe-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-fr-merc-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-in-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-us-merc-en.js" />
+    <Content Include="assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="assets\libs\admin-resources\rwd-table\rwd-table.min.css" />
+    <Content Include="assets\libs\admin-resources\rwd-table\rwd-table.min.js" />
+    <Content Include="assets\libs\apexcharts\apexcharts.min.js" />
+    <Content Include="assets\libs\autonumeric\autoNumeric-min.js" />
+    <Content Include="assets\libs\bootstrap-datepicker\css\bootstrap-datepicker.min.css" />
+    <Content Include="assets\libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="assets\libs\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="assets\libs\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="assets\libs\bootstrap-maxlength\bootstrap-maxlength.min.js" />
+    <Content Include="assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="assets\libs\c3\c3.min.css" />
+    <Content Include="assets\libs\c3\c3.min.js" />
+    <Content Include="assets\libs\chart.js\Chart.bundle.min.js" />
+    <Content Include="assets\libs\chartist-plugin-tooltips\chartist-plugin-tooltip.min.js" />
+    <Content Include="assets\libs\chartist\chartist.min.css" />
+    <Content Include="assets\libs\chartist\chartist.min.js" />
+    <Content Include="assets\libs\clockpicker\bootstrap-clockpicker.min.css" />
+    <Content Include="assets\libs\clockpicker\bootstrap-clockpicker.min.js" />
+    <Content Include="assets\libs\d3\d3.min.js" />
+    <Content Include="assets\libs\datatables.net-bs5\css\dataTables.bootstrap5.min.css" />
+    <Content Include="assets\libs\datatables.net-bs5\js\dataTables.bootstrap5.min.js" />
+    <Content Include="assets\libs\datatables.net-buttons-bs5\css\buttons.bootstrap5.min.css" />
+    <Content Include="assets\libs\datatables.net-buttons-bs5\js\buttons.bootstrap5.min.js" />
+    <Content Include="assets\libs\datatables.net-buttons\js\buttons.flash.min.js" />
+    <Content Include="assets\libs\datatables.net-buttons\js\buttons.html5.min.js" />
+    <Content Include="assets\libs\datatables.net-buttons\js\buttons.print.min.js" />
+    <Content Include="assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js" />
+    <Content Include="assets\libs\datatables.net-keytable\js\dataTables.keyTable.min.js" />
+    <Content Include="assets\libs\datatables.net-responsive-bs5\css\responsive.bootstrap5.min.css" />
+    <Content Include="assets\libs\datatables.net-responsive-bs5\js\responsive.bootstrap5.min.js" />
+    <Content Include="assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="assets\libs\datatables.net-select-bs5\css\select.bootstrap5.min.css" />
+    <Content Include="assets\libs\datatables.net-select\js\dataTables.select.min.js" />
+    <Content Include="assets\libs\datatables.net\js\jquery.dataTables.min.js" />
+    <Content Include="assets\libs\dropzone\min\dropzone.min.css" />
+    <Content Include="assets\libs\dropzone\min\dropzone.min.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.crosshair.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.pie.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.resize.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.selection.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.stack.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.time.js" />
+    <Content Include="assets\libs\flot-orderbars\js\jquery.flot.orderBars.js" />
+    <Content Include="assets\libs\footable\footable.all.min.js" />
+    <Content Include="assets\libs\gmaps\gmaps.min.js" />
+    <Content Include="assets\libs\hopscotch\css\hopscotch.min.css" />
+    <Content Include="assets\libs\hopscotch\img\sprite-green.png" />
+    <Content Include="assets\libs\hopscotch\js\hopscotch.min.js" />
+    <Content Include="assets\libs\ion-rangeslider\css\ion.rangeSlider.min.css" />
+    <Content Include="assets\libs\ion-rangeslider\js\ion.rangeSlider.min.js" />
+    <Content Include="assets\libs\jquery-countdown\jquery.countdown.min.js" />
+    <Content Include="assets\libs\jquery-datatables-checkboxes\js\dataTables.checkboxes.min.js" />
+    <Content Include="assets\libs\jquery-knob\jquery.knob.min.js" />
+    <Content Include="assets\libs\jquery-mapael\js\jquery.mapael.min.js" />
+    <Content Include="assets\libs\jquery-mapael\js\maps\usa_states.min.js" />
+    <Content Include="assets\libs\jquery-mapael\js\maps\world_countries.min.js" />
+    <Content Include="assets\libs\jquery-mask-plugin\jquery.mask.min.js" />
+    <Content Include="assets\libs\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="assets\libs\jquery-tabledit\jquery.tabledit.min.js" />
+    <Content Include="assets\libs\jquery-toast-plugin\jquery.toast.min.css" />
+    <Content Include="assets\libs\jquery-toast-plugin\jquery.toast.min.js" />
+    <Content Include="assets\libs\jquery.flot.tooltip\js\jquery.flot.tooltip.min.js" />
+    <Content Include="assets\libs\jquery.quicksearch\jquery.quicksearch.min.js" />
+    <Content Include="assets\libs\jquery.scrollto\jquery.scrollTo.min.js" />
+    <Content Include="assets\libs\jstree\jstree.min.js" />
+    <Content Include="assets\libs\jstree\themes\default\32px.png" />
+    <Content Include="assets\libs\jstree\themes\default\40px.png" />
+    <Content Include="assets\libs\jstree\themes\default\style.min.css" />
+    <Content Include="assets\libs\jstree\themes\default\throbber.gif" />
+    <Content Include="assets\libs\magnific-popup\jquery.magnific-popup.min.js" />
+    <Content Include="assets\libs\magnific-popup\magnific-popup.css" />
+    <Content Include="assets\libs\mohithg-switchery\switchery.min.css" />
+    <Content Include="assets\libs\mohithg-switchery\switchery.min.js" />
+    <Content Include="assets\libs\moment\min\moment.min.js" />
+    <Content Include="assets\libs\morris.js06\morris.min.js" />
+    <Content Include="assets\libs\multiselect\css\multi-select.css" />
+    <Content Include="assets\libs\multiselect\img\switch.png" />
+    <Content Include="assets\libs\multiselect\js\jquery.multi-select.js" />
+    <Content Include="assets\libs\nestable2\jquery.nestable.min.css" />
+    <Content Include="assets\libs\nestable2\jquery.nestable.min.js" />
+    <Content Include="assets\libs\parsleyjs\parsley.min.js" />
+    <Content Include="assets\libs\pdfmake\build\pdfmake.min.js" />
+    <Content Include="assets\libs\pdfmake\build\vfs_fonts.js" />
+    <Content Include="assets\libs\peity\jquery.peity.min.js" />
+    <Content Include="assets\libs\quill\quill.bubble.css" />
+    <Content Include="assets\libs\quill\quill.core.css" />
+    <Content Include="assets\libs\quill\quill.min.js" />
+    <Content Include="assets\libs\quill\quill.snow.css" />
+    <Content Include="assets\libs\raphael\raphael.min.js" />
+    <Content Include="assets\libs\select2\css\select2.min.css" />
+    <Content Include="assets\libs\select2\js\select2.min.js" />
+    <Content Include="assets\libs\selectize\css\selectize.bootstrap3.css" />
+    <Content Include="assets\libs\selectize\js\standalone\selectize.min.js" />
+    <Content Include="assets\libs\sortablejs\Sortable.min.js" />
+    <Content Include="assets\libs\spectrum-colorpicker2\spectrum.min.css" />
+    <Content Include="assets\libs\spectrum-colorpicker2\spectrum.min.js" />
+    <Content Include="assets\libs\sweetalert2\sweetalert2.min.css" />
+    <Content Include="assets\libs\sweetalert2\sweetalert2.min.js" />
+    <Content Include="assets\libs\tablesaw\tablesaw.css" />
+    <Content Include="assets\libs\tablesaw\tablesaw.js" />
+    <Content Include="assets\libs\tippy.js\tippy.all.min.js" />
+    <Content Include="assets\libs\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="assets\libs\x-editable\bootstrap-editable\css\bootstrap-editable.css" />
+    <Content Include="assets\libs\x-editable\bootstrap-editable\img\clear.png" />
+    <Content Include="assets\libs\x-editable\bootstrap-editable\img\loading.gif" />
+    <Content Include="assets\libs\x-editable\bootstrap-editable\js\bootstrap-editable.min.js" />
+    <Content Include="BranchLogin.aspx" />
+    <Content Include="Branch\AddCase.aspx" />
+    <Content Include="Branch\AddConnector.aspx" />
+    <Content Include="Branch\AddEmployee.aspx" />
+    <Content Include="Branch\AddEmployeeTarget.aspx" />
+    <Content Include="Branch\AddFreelancer.aspx" />
+    <Content Include="Branch\AddFreelancerProductPayout.aspx" />
+    <Content Include="Branch\AddMarketingEmp.aspx" />
+    <Content Include="Branch\CaseFromMaketEmp.aspx" />
+    <Content Include="Branch\CasesFromConnector.aspx" />
+    <Content Include="Branch\CasesFromEmployee.aspx" />
+    <Content Include="Branch\CasesFromFreelancers.aspx" />
+    <Content Include="Branch\ChangeFreelancerFromCase.aspx" />
+    <Content Include="Branch\ChangePassword.aspx" />
+    <Content Include="Branch\ConnectorCaseCount.aspx" />
+    <Content Include="Branch\ConnectorListForMapping.aspx" />
+    <Content Include="Branch\ConnectorPayout.aspx" />
+    <Content Include="Branch\Dashboard.aspx" />
+    <Content Include="Branch\DownloadConnectorDocs.aspx" />
+    <Content Include="Branch\DownloadFreelancerDocs.aspx" />
+    <Content Include="Branch\EditConnectorId.aspx" />
+    <Content Include="Branch\EmpDetailPerformance.aspx" />
+    <Content Include="Branch\EmployeePayout.aspx" />
+    <Content Include="Branch\EmployeePerformanceReport.aspx" />
+    <Content Include="Branch\FreelancerCaseCount.aspx" />
+    <Content Include="Branch\FreelancerListForMapping.aspx" />
+    <Content Include="Branch\Logout.aspx" />
+    <Content Include="Branch\MapConnectorToEmpMarketEmp.aspx" />
+    <Content Include="Branch\MapEmployeeToCase.aspx" />
+    <Content Include="Branch\MapEmpToConnectorCase.aspx" />
+    <Content Include="Branch\MapFreelancerToEmpMarketEmp.aspx" />
+    <Content Include="Branch\ShowAllCases.aspx" />
+    <Content Include="Branch\ShowBankCodes.aspx" />
+    <Content Include="Branch\ShowBankers.aspx" />
+    <Content Include="Branch\ShowCases.aspx" />
+    <Content Include="Branch\ShowConnectors.aspx" />
+    <Content Include="Branch\ShowCustomers.aspx" />
+    <Content Include="Branch\ShowDisbursedCases.aspx" />
+    <Content Include="Branch\ShowEmployee.aspx" />
+    <Content Include="Branch\ShowFreelancer.aspx" />
+    <Content Include="Branch\ShowFreelancerPayout.aspx" />
+    <Content Include="Branch\ShowMarketEmpPayout.aspx" />
+    <Content Include="Branch\ShowMarketingEmp.aspx" />
+    <Content Include="Branch\ShowRejectedCases.aspx" />
+    <Content Include="Branch\ShowSliders.aspx" />
+    <Content Include="Branch\ShowStaff.aspx" />
+    <Content Include="Branch\ShowTrancheDetails.aspx" />
+    <Content Include="Branch\TransferCaseFromEmpToEmp.aspx" />
+    <Content Include="Branch\UpdateConnectorDocs.aspx" />
+    <Content Include="Branch\UpdateFreelancerDocs.aspx" />
+    <Content Include="clipboard.min.js" />
+    <Content Include="ConnectorLogin.aspx" />
+    <Content Include="Connector\AddCase.aspx" />
+    <Content Include="Connector\AddLeadOrLoan.aspx" />
+    <Content Include="Connector\AddSCPayout.aspx" />
+    <Content Include="Connector\AddSubconnector.aspx" />
+    <Content Include="Connector\CalculateYourIncentive.aspx" />
+    <Content Include="Connector\CaseStatus.aspx" />
+    <Content Include="Connector\ChangePassword.aspx" />
+    <Content Include="Connector\Dashboard.aspx" />
+    <Content Include="Connector\DownloadPayouts.aspx" />
+    <Content Include="Connector\Logout.aspx" />
+    <Content Include="Connector\PayoutListMonthCaseWise.aspx" />
+    <Content Include="Connector\ShowCases.aspx" />
+    <Content Include="Connector\ShowCustomerLeads.aspx" />
+    <Content Include="Connector\ShowCustomerLoans.aspx" />
+    <Content Include="Connector\ShowDisbursedCases.aspx" />
+    <Content Include="Connector\ShowPayouts.aspx" />
+    <Content Include="Connector\ShowRejectedCases.aspx" />
+    <Content Include="Connector\ShowSliders.aspx" />
+    <Content Include="Connector\ShowStaff.aspx" />
+    <Content Include="Connector\ShowSubconnectors.aspx" />
+    <Content Include="Connector\UpdateProfile.aspx" />
+    <Content Include="Connector\UploadDocuments.aspx" />
+    <Content Include="Connector\WithdrawalSummary.aspx" />
+    <Content Include="content\toastr.css" />
+    <Content Include="content\toastr.min.css" />
+    <Content Include="content\toastr.scss" />
+    <Content Include="content\toastr.less" />
+    <Content Include="Branch\Site.Master" />
+    <Content Include="Connector\Site.Master" />
+    <Content Include="CustomerLogin.aspx" />
+    <Content Include="Customer\AddLead.aspx" />
+    <Content Include="Customer\ApplyLoan.aspx" />
+    <Content Include="Customer\BecomeLoanAdvisor.aspx" />
+    <Content Include="Customer\ChangePassword.aspx" />
+    <Content Include="Customer\CustomerProfile.aspx" />
+    <Content Include="Customer\Logout.aspx" />
+    <Content Include="Customer\ShowAllCases.aspx" />
+    <Content Include="Customer\ShowAppliedLoans.aspx" />
+    <Content Include="Customer\ShowLeads.aspx" />
+    <Content Include="EmployeeLogin.aspx" />
+    <Content Include="Employee\AddCase.aspx" />
+    <Content Include="Employee\AddConnector.aspx" />
+    <Content Include="Employee\AllCases.aspx" />
+    <Content Include="Employee\CalculateEmployeeIncentive.aspx" />
+    <Content Include="Employee\CasesFromFreelancer.aspx" />
+    <Content Include="Employee\ChangePassword.aspx" />
+    <Content Include="Employee\Dashboard.aspx" />
+    <Content Include="Employee\EditCase.aspx" />
+    <Content Include="Employee\EditCaseStatus.aspx" />
+    <Content Include="Employee\EditDisbursement.aspx" />
+    <Content Include="Employee\EditTrancheDetails.aspx" />
+    <Content Include="Employee\EditTrancheStatus.aspx" />
+    <Content Include="Employee\EmployePerformanceReport.aspx" />
+    <Content Include="Employee\Logout.aspx" />
+    <Content Include="Employee\PayoutMonthWiseCaseWise.aspx" />
+    <Content Include="Employee\ShowBankCodes.aspx" />
+    <Content Include="Employee\ShowBankers.aspx" />
+    <Content Include="Employee\ShowCases.aspx" />
+    <Content Include="Employee\ShowCasesFromConnectors.aspx" />
+    <Content Include="Employee\ShowConnector.aspx" />
+    <Content Include="Employee\ShowDisbursedCases.aspx" />
+    <Content Include="Employee\ShowPayouts.aspx" />
+    <Content Include="Employee\ShowRejectedCases.aspx" />
+    <Content Include="Employee\ShowSliders.aspx" />
+    <Content Include="Employee\ShowStaff.aspx" />
+    <Content Include="Employee\ShowTrancheCases.aspx" />
+    <Content Include="Employee\ShowTrancheDetails.aspx" />
+    <Content Include="Employee\Site.Master" />
+    <Content Include="Employee\UpdateProfile.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="ForgetPasswordCustomer.aspx" />
+    <Content Include="FreeLancerLogin.aspx" />
+    <Content Include="FreeLancer\AddCase.aspx" />
+    <Content Include="FreeLancer\AddLeadOrLoan.aspx" />
+    <Content Include="FreeLancer\AddSCPayout.aspx" />
+    <Content Include="FreeLancer\AddSubconnector.aspx" />
+    <Content Include="FreeLancer\CalculateYourIncentive.aspx" />
+    <Content Include="FreeLancer\CaseStatus.aspx" />
+    <Content Include="FreeLancer\ChangePassword.aspx" />
+    <Content Include="FreeLancer\Dashboard.aspx" />
+    <Content Include="FreeLancer\DownloadPayouts.aspx" />
+    <Content Include="FreeLancer\logout.aspx" />
+    <Content Include="FreeLancer\PayoutListMonthCaseWise.aspx" />
+    <Content Include="FreeLancer\ShowCases.aspx" />
+    <Content Include="FreeLancer\ShowDisbursedCases.aspx" />
+    <Content Include="FreeLancer\ShowPayouts.aspx" />
+    <Content Include="FreeLancer\ShowRejectedCases.aspx" />
+    <Content Include="FreeLancer\ShowSliders.aspx" />
+    <Content Include="FreeLancer\ShowSubconnectors.aspx" />
+    <Content Include="FreeLancer\Site.Master" />
+    <Content Include="MarketingEmp\AddCase.aspx" />
+    <Content Include="MarketingEmp\ChangePassword.aspx" />
+    <Content Include="MarketingEmp\Dashboard.aspx" />
+    <Content Include="MarketingEmp\Logout.aspx" />
+    <Content Include="MarketingEmp\PayoutMonthWiseCaseWise.aspx" />
+    <Content Include="MarketingEmp\ShowAllCases.aspx" />
+    <Content Include="MarketingEmp\ShowBankCodes.aspx" />
+    <Content Include="MarketingEmp\ShowCaseCountFromConnector.aspx" />
+    <Content Include="MarketingEmp\ShowCaseCountFromFreelancer.aspx" />
+    <Content Include="MarketingEmp\ShowCasesFromFreelancers.aspx" />
+    <Content Include="MarketingEmp\ShowCasesFromConnector.aspx" />
+    <Content Include="MarketingEmp\ShowDisbursedCases.aspx" />
+    <Content Include="MarketingEmp\ShowRejectedCases.aspx" />
+    <Content Include="MarketingEmp\ShowSliders.aspx" />
+    <Content Include="MarketingEmp\Site.Master" />
+    <Content Include="Customer\Site.Master" />
+    <Content Include="Accountant\Site.Master" />
+    <Content Include="Employee\WithdrawalSummary.aspx" />
+    <Content Include="FreeLancer\UploadDocuments.aspx" />
+    <Content Include="FreeLancer\WithdrawalSummary.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Index.aspx" />
+    <Content Include="Logs\ErrorLog.txt" />
+    <Content Include="MarketingEmpLogin.aspx" />
+    <Content Include="MarketingEmp\WithdrawalSummary.aspx" />
+    <Content Include="Print\css\print.css" />
+    <Content Include="Print\css\style.css" />
+    <Content Include="Print\images\logo.png" />
+    <Content Include="Print\js\example.js" />
+    <Content Include="Print\js\jquery-1.3.2.min.js" />
+    <Content Include="PrintLogo.jpeg" />
+    <Content Include="RegisterCustomer.aspx" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="SubconnectorLogin.aspx" />
+    <Content Include="SubConnector\AddLead.aspx" />
+    <Content Include="SubConnector\ApplyLoan.aspx" />
+    <Content Include="SubConnector\BecomeLoanAdvisor.aspx" />
+    <Content Include="SubConnector\ChangePassword.aspx" />
+    <Content Include="SubConnector\CustomerProfile.aspx" />
+    <Content Include="SubConnector\Logout.aspx" />
+    <Content Include="SubConnector\ShowAllCases.aspx" />
+    <Content Include="SubConnector\ShowAppliedLoans.aspx" />
+    <Content Include="SubConnector\ShowLeads.aspx" />
+    <Content Include="SubConnector\ShowPayouts.aspx" />
+    <Content Include="user.png" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountantLogin.aspx.cs">
+      <DependentUpon>AccountantLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountantLogin.aspx.designer.cs">
+      <DependentUpon>AccountantLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\AddBanker.aspx.cs">
+      <DependentUpon>AddBanker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\AddBanker.aspx.designer.cs">
+      <DependentUpon>AddBanker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\AddExpenses.aspx.cs">
+      <DependentUpon>AddExpenses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\AddExpenses.aspx.designer.cs">
+      <DependentUpon>AddExpenses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MakeConnectorWithDrawal.aspx.cs">
+      <DependentUpon>MakeConnectorWithDrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MakeConnectorWithDrawal.aspx.designer.cs">
+      <DependentUpon>MakeConnectorWithDrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MakeEmployeeWithdrawal.aspx.cs">
+      <DependentUpon>MakeEmployeeWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MakeEmployeeWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeEmployeeWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MakeFreealncerWithdrawal.aspx.cs">
+      <DependentUpon>MakeFreealncerWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MakeFreealncerWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeFreealncerWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MakeMarketEmpWithdrawal.aspx.cs">
+      <DependentUpon>MakeMarketEmpWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MakeMarketEmpWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeMarketEmpWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MarketingEmpPaidPayouts.aspx.cs">
+      <DependentUpon>MarketingEmpPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MarketingEmpPaidPayouts.aspx.designer.cs">
+      <DependentUpon>MarketingEmpPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\MarketingEmpPayouts.aspx.cs">
+      <DependentUpon>MarketingEmpPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\MarketingEmpPayouts.aspx.designer.cs">
+      <DependentUpon>MarketingEmpPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectorPaidPayouts.aspx.cs">
+      <DependentUpon>ShowConnectorPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectorPaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowConnectorPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectorPayouts.aspx.cs">
+      <DependentUpon>ShowConnectorPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectorPayouts.aspx.designer.cs">
+      <DependentUpon>ShowConnectorPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectors.aspx.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowConnectors.aspx.designer.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployeePaidPayouts.aspx.cs">
+      <DependentUpon>ShowEmployeePaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployeePaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowEmployeePaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployeePayout.aspx.cs">
+      <DependentUpon>ShowEmployeePayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployeePayout.aspx.designer.cs">
+      <DependentUpon>ShowEmployeePayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployees.aspx.cs">
+      <DependentUpon>ShowEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowEmployees.aspx.designer.cs">
+      <DependentUpon>ShowEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancerPaidPayouts.aspx.cs">
+      <DependentUpon>ShowFreelancerPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancerPaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowFreelancerPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancerPayout.aspx.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancerPayout.aspx.designer.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancers.aspx.cs">
+      <DependentUpon>ShowFreelancers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowFreelancers.aspx.designer.cs">
+      <DependentUpon>ShowFreelancers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\ShowMarketingEmp.aspx.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\ShowMarketingEmp.aspx.designer.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Accountant\UpdatePayoutStatus.aspx.cs">
+      <DependentUpon>UpdatePayoutStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountant\UpdatePayoutStatus.aspx.designer.cs">
+      <DependentUpon>UpdatePayoutStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddAccountant.aspx.cs">
+      <DependentUpon>AddAccountant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddAccountant.aspx.designer.cs">
+      <DependentUpon>AddAccountant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddBankCodes.aspx.cs">
+      <DependentUpon>AddBankCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddBankCodes.aspx.designer.cs">
+      <DependentUpon>AddBankCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddBanker.aspx.cs">
+      <DependentUpon>AddBanker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddBanker.aspx.designer.cs">
+      <DependentUpon>AddBanker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddBranch.aspx.cs">
+      <DependentUpon>AddBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddBranch.aspx.designer.cs">
+      <DependentUpon>AddBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddCaseStatus.aspx.cs">
+      <DependentUpon>AddCaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCaseStatus.aspx.designer.cs">
+      <DependentUpon>AddCaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddConnectorPayoutSlab.aspx.cs">
+      <DependentUpon>AddConnectorPayoutSlab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddConnectorPayoutSlab.aspx.designer.cs">
+      <DependentUpon>AddConnectorPayoutSlab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddEmpPayoutSlab.aspx.cs">
+      <DependentUpon>AddEmpPayoutSlab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddEmpPayoutSlab.aspx.designer.cs">
+      <DependentUpon>AddEmpPayoutSlab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddProducts.aspx.cs">
+      <DependentUpon>AddProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddProducts.aspx.designer.cs">
+      <DependentUpon>AddProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddRegion.aspx.cs">
+      <DependentUpon>AddRegion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddRegion.aspx.designer.cs">
+      <DependentUpon>AddRegion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddSliders.aspx.cs">
+      <DependentUpon>AddSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddSliders.aspx.designer.cs">
+      <DependentUpon>AddSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddStaff.aspx.cs">
+      <DependentUpon>AddStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddStaff.aspx.designer.cs">
+      <DependentUpon>AddStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConnectorsList.aspx.cs">
+      <DependentUpon>ConnectorsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConnectorsList.aspx.designer.cs">
+      <DependentUpon>ConnectorsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConnectorsListForMapping.aspx.cs">
+      <DependentUpon>ConnectorsListForMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConnectorsListForMapping.aspx.designer.cs">
+      <DependentUpon>ConnectorsListForMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DownloadConnectorDocs.aspx.cs">
+      <DependentUpon>DownloadConnectorDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DownloadConnectorDocs.aspx.designer.cs">
+      <DependentUpon>DownloadConnectorDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DownloadFreelancerDocs.aspx.cs">
+      <DependentUpon>DownloadFreelancerDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DownloadFreelancerDocs.aspx.designer.cs">
+      <DependentUpon>DownloadFreelancerDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EmployeeListForMapping.aspx.cs">
+      <DependentUpon>EmployeeListForMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EmployeeListForMapping.aspx.designer.cs">
+      <DependentUpon>EmployeeListForMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EmployeesList.aspx.cs">
+      <DependentUpon>EmployeesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EmployeesList.aspx.designer.cs">
+      <DependentUpon>EmployeesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FreelancerListForMapping.aspx.cs">
+      <DependentUpon>FreelancerListForMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FreelancerListForMapping.aspx.designer.cs">
+      <DependentUpon>FreelancerListForMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FreelancersList.aspx.cs">
+      <DependentUpon>FreelancersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FreelancersList.aspx.designer.cs">
+      <DependentUpon>FreelancersList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MakeConnectorWithDrawal.aspx.cs">
+      <DependentUpon>MakeConnectorWithDrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MakeConnectorWithDrawal.aspx.designer.cs">
+      <DependentUpon>MakeConnectorWithDrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MakeEmployeeWithdrawal.aspx.cs">
+      <DependentUpon>MakeEmployeeWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MakeEmployeeWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeEmployeeWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MakeFreealncerWithdrawal.aspx.cs">
+      <DependentUpon>MakeFreealncerWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MakeFreealncerWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeFreealncerWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MakeMarketEmpWithdrawal.aspx.cs">
+      <DependentUpon>MakeMarketEmpWithdrawal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MakeMarketEmpWithdrawal.aspx.designer.cs">
+      <DependentUpon>MakeMarketEmpWithdrawal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MapConnectorToBranch.aspx.cs">
+      <DependentUpon>MapConnectorToBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MapConnectorToBranch.aspx.designer.cs">
+      <DependentUpon>MapConnectorToBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MapEmpToBranch.aspx.cs">
+      <DependentUpon>MapEmpToBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MapEmpToBranch.aspx.designer.cs">
+      <DependentUpon>MapEmpToBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MapFreelancerToBranch.aspx.cs">
+      <DependentUpon>MapFreelancerToBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MapFreelancerToBranch.aspx.designer.cs">
+      <DependentUpon>MapFreelancerToBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MarketingEmpPaidPayouts.aspx.cs">
+      <DependentUpon>MarketingEmpPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MarketingEmpPaidPayouts.aspx.designer.cs">
+      <DependentUpon>MarketingEmpPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MarketingEmpPayouts.aspx.cs">
+      <DependentUpon>MarketingEmpPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MarketingEmpPayouts.aspx.designer.cs">
+      <DependentUpon>MarketingEmpPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowBranches.aspx.cs">
+      <DependentUpon>ShowBranches.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowBranches.aspx.designer.cs">
+      <DependentUpon>ShowBranches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowConnectorPaidPayouts.aspx.cs">
+      <DependentUpon>ShowConnectorPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowConnectorPaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowConnectorPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowConnectorPayouts.aspx.cs">
+      <DependentUpon>ShowConnectorPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowConnectorPayouts.aspx.designer.cs">
+      <DependentUpon>ShowConnectorPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowConnectors.aspx.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowConnectors.aspx.designer.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowCustomers.aspx.cs">
+      <DependentUpon>ShowCustomers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowCustomers.aspx.designer.cs">
+      <DependentUpon>ShowCustomers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowEmployeePaidPayouts.aspx.cs">
+      <DependentUpon>ShowEmployeePaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowEmployeePaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowEmployeePaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowEmployeePayout.aspx.cs">
+      <DependentUpon>ShowEmployeePayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowEmployeePayout.aspx.designer.cs">
+      <DependentUpon>ShowEmployeePayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowEmployees.aspx.cs">
+      <DependentUpon>ShowEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowEmployees.aspx.designer.cs">
+      <DependentUpon>ShowEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancerPaidPayouts.aspx.cs">
+      <DependentUpon>ShowFreelancerPaidPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancerPaidPayouts.aspx.designer.cs">
+      <DependentUpon>ShowFreelancerPaidPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancerPayout.aspx.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancerPayout.aspx.designer.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancers.aspx.cs">
+      <DependentUpon>ShowFreelancers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowFreelancers.aspx.designer.cs">
+      <DependentUpon>ShowFreelancers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowLoanQueries.aspx.cs">
+      <DependentUpon>ShowLoanQueries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowLoanQueries.aspx.designer.cs">
+      <DependentUpon>ShowLoanQueries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowMarketingEmp.aspx.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowMarketingEmp.aspx.designer.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShowRegion.aspx.cs">
+      <DependentUpon>ShowRegion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowRegion.aspx.designer.cs">
+      <DependentUpon>ShowRegion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TransferCaseToBranch.aspx.cs">
+      <DependentUpon>TransferCaseToBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TransferCaseToBranch.aspx.designer.cs">
+      <DependentUpon>TransferCaseToBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UpdatePayoutStatus.aspx.cs">
+      <DependentUpon>UpdatePayoutStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UpdatePayoutStatus.aspx.designer.cs">
+      <DependentUpon>UpdatePayoutStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppIndex.aspx.cs">
+      <DependentUpon>AppIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppIndex.aspx.designer.cs">
+      <DependentUpon>AppIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\Class1.cs" />
+    <Compile Include="App_Code\ImageCompressor.cs" />
+    <Compile Include="BranchLogin.aspx.cs">
+      <DependentUpon>BranchLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BranchLogin.aspx.designer.cs">
+      <DependentUpon>BranchLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddCase.aspx.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddCase.aspx.designer.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddConnector.aspx.cs">
+      <DependentUpon>AddConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddConnector.aspx.designer.cs">
+      <DependentUpon>AddConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddEmployee.aspx.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddEmployee.aspx.designer.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddEmployeeTarget.aspx.cs">
+      <DependentUpon>AddEmployeeTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddEmployeeTarget.aspx.designer.cs">
+      <DependentUpon>AddEmployeeTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddFreelancer.aspx.cs">
+      <DependentUpon>AddFreelancer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddFreelancer.aspx.designer.cs">
+      <DependentUpon>AddFreelancer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddFreelancerProductPayout.aspx.cs">
+      <DependentUpon>AddFreelancerProductPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddFreelancerProductPayout.aspx.designer.cs">
+      <DependentUpon>AddFreelancerProductPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\AddMarketingEmp.aspx.cs">
+      <DependentUpon>AddMarketingEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\AddMarketingEmp.aspx.designer.cs">
+      <DependentUpon>AddMarketingEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\CaseFromMaketEmp.aspx.cs">
+      <DependentUpon>CaseFromMaketEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\CaseFromMaketEmp.aspx.designer.cs">
+      <DependentUpon>CaseFromMaketEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\CasesFromConnector.aspx.cs">
+      <DependentUpon>CasesFromConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\CasesFromConnector.aspx.designer.cs">
+      <DependentUpon>CasesFromConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\CasesFromEmployee.aspx.cs">
+      <DependentUpon>CasesFromEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\CasesFromEmployee.aspx.designer.cs">
+      <DependentUpon>CasesFromEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\CasesFromFreelancers.aspx.cs">
+      <DependentUpon>CasesFromFreelancers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\CasesFromFreelancers.aspx.designer.cs">
+      <DependentUpon>CasesFromFreelancers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ChangeFreelancerFromCase.aspx.cs">
+      <DependentUpon>ChangeFreelancerFromCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ChangeFreelancerFromCase.aspx.designer.cs">
+      <DependentUpon>ChangeFreelancerFromCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ConnectorCaseCount.aspx.cs">
+      <DependentUpon>ConnectorCaseCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ConnectorCaseCount.aspx.designer.cs">
+      <DependentUpon>ConnectorCaseCount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ConnectorListForMapping.aspx.cs">
+      <DependentUpon>ConnectorListForMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ConnectorListForMapping.aspx.designer.cs">
+      <DependentUpon>ConnectorListForMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ConnectorPayout.aspx.cs">
+      <DependentUpon>ConnectorPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ConnectorPayout.aspx.designer.cs">
+      <DependentUpon>ConnectorPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\DownloadConnectorDocs.aspx.cs">
+      <DependentUpon>DownloadConnectorDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\DownloadConnectorDocs.aspx.designer.cs">
+      <DependentUpon>DownloadConnectorDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\DownloadFreelancerDocs.aspx.cs">
+      <DependentUpon>DownloadFreelancerDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\DownloadFreelancerDocs.aspx.designer.cs">
+      <DependentUpon>DownloadFreelancerDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\EditConnectorId.aspx.cs">
+      <DependentUpon>EditConnectorId.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\EditConnectorId.aspx.designer.cs">
+      <DependentUpon>EditConnectorId.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\EmpDetailPerformance.aspx.cs">
+      <DependentUpon>EmpDetailPerformance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\EmpDetailPerformance.aspx.designer.cs">
+      <DependentUpon>EmpDetailPerformance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\EmployeePayout.aspx.cs">
+      <DependentUpon>EmployeePayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\EmployeePayout.aspx.designer.cs">
+      <DependentUpon>EmployeePayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\EmployeePerformanceReport.aspx.cs">
+      <DependentUpon>EmployeePerformanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\EmployeePerformanceReport.aspx.designer.cs">
+      <DependentUpon>EmployeePerformanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\FreelancerCaseCount.aspx.cs">
+      <DependentUpon>FreelancerCaseCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\FreelancerCaseCount.aspx.designer.cs">
+      <DependentUpon>FreelancerCaseCount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\FreelancerListForMapping.aspx.cs">
+      <DependentUpon>FreelancerListForMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\FreelancerListForMapping.aspx.designer.cs">
+      <DependentUpon>FreelancerListForMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\MapConnectorToEmpMarketEmp.aspx.cs">
+      <DependentUpon>MapConnectorToEmpMarketEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\MapConnectorToEmpMarketEmp.aspx.designer.cs">
+      <DependentUpon>MapConnectorToEmpMarketEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\MapEmployeeToCase.aspx.cs">
+      <DependentUpon>MapEmployeeToCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\MapEmployeeToCase.aspx.designer.cs">
+      <DependentUpon>MapEmployeeToCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\MapEmpToConnectorCase.aspx.cs">
+      <DependentUpon>MapEmpToConnectorCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\MapEmpToConnectorCase.aspx.designer.cs">
+      <DependentUpon>MapEmpToConnectorCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\MapFreelancerToEmpMarketEmp.aspx.cs">
+      <DependentUpon>MapFreelancerToEmpMarketEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\MapFreelancerToEmpMarketEmp.aspx.designer.cs">
+      <DependentUpon>MapFreelancerToEmpMarketEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowBankCodes.aspx.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowBankCodes.aspx.designer.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowBankers.aspx.cs">
+      <DependentUpon>ShowBankers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowBankers.aspx.designer.cs">
+      <DependentUpon>ShowBankers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowCases.aspx.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowCases.aspx.designer.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowConnectors.aspx.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowConnectors.aspx.designer.cs">
+      <DependentUpon>ShowConnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowCustomers.aspx.cs">
+      <DependentUpon>ShowCustomers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowCustomers.aspx.designer.cs">
+      <DependentUpon>ShowCustomers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowDisbursedCases.aspx.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowDisbursedCases.aspx.designer.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowEmployee.aspx.cs">
+      <DependentUpon>ShowEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowEmployee.aspx.designer.cs">
+      <DependentUpon>ShowEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowFreelancer.aspx.cs">
+      <DependentUpon>ShowFreelancer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowFreelancer.aspx.designer.cs">
+      <DependentUpon>ShowFreelancer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowFreelancerPayout.aspx.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowFreelancerPayout.aspx.designer.cs">
+      <DependentUpon>ShowFreelancerPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowMarketEmpPayout.aspx.cs">
+      <DependentUpon>ShowMarketEmpPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowMarketEmpPayout.aspx.designer.cs">
+      <DependentUpon>ShowMarketEmpPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowMarketingEmp.aspx.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowMarketingEmp.aspx.designer.cs">
+      <DependentUpon>ShowMarketingEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowRejectedCases.aspx.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowRejectedCases.aspx.designer.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowSliders.aspx.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowSliders.aspx.designer.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowStaff.aspx.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowStaff.aspx.designer.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\ShowTrancheDetails.aspx.cs">
+      <DependentUpon>ShowTrancheDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\ShowTrancheDetails.aspx.designer.cs">
+      <DependentUpon>ShowTrancheDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\TransferCaseFromEmpToEmp.aspx.cs">
+      <DependentUpon>TransferCaseFromEmpToEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\TransferCaseFromEmpToEmp.aspx.designer.cs">
+      <DependentUpon>TransferCaseFromEmpToEmp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\UpdateConnectorDocs.aspx.cs">
+      <DependentUpon>UpdateConnectorDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\UpdateConnectorDocs.aspx.designer.cs">
+      <DependentUpon>UpdateConnectorDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\UpdateFreelancerDocs.aspx.cs">
+      <DependentUpon>UpdateFreelancerDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Branch\UpdateFreelancerDocs.aspx.designer.cs">
+      <DependentUpon>UpdateFreelancerDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectorLogin.aspx.cs">
+      <DependentUpon>ConnectorLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConnectorLogin.aspx.designer.cs">
+      <DependentUpon>ConnectorLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\AddCase.aspx.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\AddCase.aspx.designer.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\AddLeadOrLoan.aspx.cs">
+      <DependentUpon>AddLeadOrLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\AddLeadOrLoan.aspx.designer.cs">
+      <DependentUpon>AddLeadOrLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\AddSCPayout.aspx.cs">
+      <DependentUpon>AddSCPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\AddSCPayout.aspx.designer.cs">
+      <DependentUpon>AddSCPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\AddSubconnector.aspx.cs">
+      <DependentUpon>AddSubconnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\AddSubconnector.aspx.designer.cs">
+      <DependentUpon>AddSubconnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\CalculateYourIncentive.aspx.cs">
+      <DependentUpon>CalculateYourIncentive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\CalculateYourIncentive.aspx.designer.cs">
+      <DependentUpon>CalculateYourIncentive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\CaseStatus.aspx.cs">
+      <DependentUpon>CaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\CaseStatus.aspx.designer.cs">
+      <DependentUpon>CaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\DownloadPayouts.aspx.cs">
+      <DependentUpon>DownloadPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\DownloadPayouts.aspx.designer.cs">
+      <DependentUpon>DownloadPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\PayoutListMonthCaseWise.aspx.cs">
+      <DependentUpon>PayoutListMonthCaseWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\PayoutListMonthCaseWise.aspx.designer.cs">
+      <DependentUpon>PayoutListMonthCaseWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowCases.aspx.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowCases.aspx.designer.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowCustomerLeads.aspx.cs">
+      <DependentUpon>ShowCustomerLeads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowCustomerLeads.aspx.designer.cs">
+      <DependentUpon>ShowCustomerLeads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowCustomerLoans.aspx.cs">
+      <DependentUpon>ShowCustomerLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowCustomerLoans.aspx.designer.cs">
+      <DependentUpon>ShowCustomerLoans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowDisbursedCases.aspx.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowDisbursedCases.aspx.designer.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowPayouts.aspx.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowPayouts.aspx.designer.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowRejectedCases.aspx.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowRejectedCases.aspx.designer.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowSliders.aspx.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowSliders.aspx.designer.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowStaff.aspx.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowStaff.aspx.designer.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\ShowSubconnectors.aspx.cs">
+      <DependentUpon>ShowSubconnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\ShowSubconnectors.aspx.designer.cs">
+      <DependentUpon>ShowSubconnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\UpdateProfile.aspx.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\UpdateProfile.aspx.designer.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\UploadDocuments.aspx.cs">
+      <DependentUpon>UploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\UploadDocuments.aspx.designer.cs">
+      <DependentUpon>UploadDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connector\WithdrawalSummary.aspx.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connector\WithdrawalSummary.aspx.designer.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLogin.aspx.cs">
+      <DependentUpon>CustomerLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerLogin.aspx.designer.cs">
+      <DependentUpon>CustomerLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\AddLead.aspx.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\AddLead.aspx.designer.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ApplyLoan.aspx.cs">
+      <DependentUpon>ApplyLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ApplyLoan.aspx.designer.cs">
+      <DependentUpon>ApplyLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\BecomeLoanAdvisor.aspx.cs">
+      <DependentUpon>BecomeLoanAdvisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\BecomeLoanAdvisor.aspx.designer.cs">
+      <DependentUpon>BecomeLoanAdvisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerProfile.aspx.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerProfile.aspx.designer.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ShowAppliedLoans.aspx.cs">
+      <DependentUpon>ShowAppliedLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ShowAppliedLoans.aspx.designer.cs">
+      <DependentUpon>ShowAppliedLoans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ShowLeads.aspx.cs">
+      <DependentUpon>ShowLeads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ShowLeads.aspx.designer.cs">
+      <DependentUpon>ShowLeads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeLogin.aspx.cs">
+      <DependentUpon>EmployeeLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeLogin.aspx.designer.cs">
+      <DependentUpon>EmployeeLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\AddCase.aspx.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\AddCase.aspx.designer.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\AddConnector.aspx.cs">
+      <DependentUpon>AddConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\AddConnector.aspx.designer.cs">
+      <DependentUpon>AddConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\AllCases.aspx.cs">
+      <DependentUpon>AllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\AllCases.aspx.designer.cs">
+      <DependentUpon>AllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\CalculateEmployeeIncentive.aspx.cs">
+      <DependentUpon>CalculateEmployeeIncentive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\CalculateEmployeeIncentive.aspx.designer.cs">
+      <DependentUpon>CalculateEmployeeIncentive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\CasesFromFreelancer.aspx.cs">
+      <DependentUpon>CasesFromFreelancer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\CasesFromFreelancer.aspx.designer.cs">
+      <DependentUpon>CasesFromFreelancer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditCase.aspx.cs">
+      <DependentUpon>EditCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditCase.aspx.designer.cs">
+      <DependentUpon>EditCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditCaseStatus.aspx.cs">
+      <DependentUpon>EditCaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditCaseStatus.aspx.designer.cs">
+      <DependentUpon>EditCaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditDisbursement.aspx.cs">
+      <DependentUpon>EditDisbursement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditDisbursement.aspx.designer.cs">
+      <DependentUpon>EditDisbursement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditTrancheDetails.aspx.cs">
+      <DependentUpon>EditTrancheDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditTrancheDetails.aspx.designer.cs">
+      <DependentUpon>EditTrancheDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EditTrancheStatus.aspx.cs">
+      <DependentUpon>EditTrancheStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EditTrancheStatus.aspx.designer.cs">
+      <DependentUpon>EditTrancheStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployePerformanceReport.aspx.cs">
+      <DependentUpon>EmployePerformanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployePerformanceReport.aspx.designer.cs">
+      <DependentUpon>EmployePerformanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PayoutMonthWiseCaseWise.aspx.cs">
+      <DependentUpon>PayoutMonthWiseCaseWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PayoutMonthWiseCaseWise.aspx.designer.cs">
+      <DependentUpon>PayoutMonthWiseCaseWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowBankCodes.aspx.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowBankCodes.aspx.designer.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowBankers.aspx.cs">
+      <DependentUpon>ShowBankers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowBankers.aspx.designer.cs">
+      <DependentUpon>ShowBankers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowCases.aspx.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowCases.aspx.designer.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowCasesFromConnectors.aspx.cs">
+      <DependentUpon>ShowCasesFromConnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowCasesFromConnectors.aspx.designer.cs">
+      <DependentUpon>ShowCasesFromConnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowConnector.aspx.cs">
+      <DependentUpon>ShowConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowConnector.aspx.designer.cs">
+      <DependentUpon>ShowConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowDisbursedCases.aspx.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowDisbursedCases.aspx.designer.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowPayouts.aspx.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowPayouts.aspx.designer.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowRejectedCases.aspx.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowRejectedCases.aspx.designer.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowSliders.aspx.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowSliders.aspx.designer.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowStaff.aspx.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowStaff.aspx.designer.cs">
+      <DependentUpon>ShowStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowTrancheCases.aspx.cs">
+      <DependentUpon>ShowTrancheCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowTrancheCases.aspx.designer.cs">
+      <DependentUpon>ShowTrancheCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ShowTrancheDetails.aspx.cs">
+      <DependentUpon>ShowTrancheDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ShowTrancheDetails.aspx.designer.cs">
+      <DependentUpon>ShowTrancheDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\UpdateProfile.aspx.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\UpdateProfile.aspx.designer.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\WithdrawalSummary.aspx.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\WithdrawalSummary.aspx.designer.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPasswordCustomer.aspx.cs">
+      <DependentUpon>ForgetPasswordCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPasswordCustomer.aspx.designer.cs">
+      <DependentUpon>ForgetPasswordCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancerLogin.aspx.cs">
+      <DependentUpon>FreeLancerLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancerLogin.aspx.designer.cs">
+      <DependentUpon>FreeLancerLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\AddCase.aspx.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\AddCase.aspx.designer.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\AddLeadOrLoan.aspx.cs">
+      <DependentUpon>AddLeadOrLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\AddLeadOrLoan.aspx.designer.cs">
+      <DependentUpon>AddLeadOrLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\AddSCPayout.aspx.cs">
+      <DependentUpon>AddSCPayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\AddSCPayout.aspx.designer.cs">
+      <DependentUpon>AddSCPayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\AddSubconnector.aspx.cs">
+      <DependentUpon>AddSubconnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\AddSubconnector.aspx.designer.cs">
+      <DependentUpon>AddSubconnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\CalculateYourIncentive.aspx.cs">
+      <DependentUpon>CalculateYourIncentive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\CalculateYourIncentive.aspx.designer.cs">
+      <DependentUpon>CalculateYourIncentive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\CaseStatus.aspx.cs">
+      <DependentUpon>CaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\CaseStatus.aspx.designer.cs">
+      <DependentUpon>CaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\DownloadPayouts.aspx.cs">
+      <DependentUpon>DownloadPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\DownloadPayouts.aspx.designer.cs">
+      <DependentUpon>DownloadPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\PayoutListMonthCaseWise.aspx.cs">
+      <DependentUpon>PayoutListMonthCaseWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\PayoutListMonthCaseWise.aspx.designer.cs">
+      <DependentUpon>PayoutListMonthCaseWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowCases.aspx.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowCases.aspx.designer.cs">
+      <DependentUpon>ShowCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowDisbursedCases.aspx.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowDisbursedCases.aspx.designer.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowPayouts.aspx.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowPayouts.aspx.designer.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowRejectedCases.aspx.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowRejectedCases.aspx.designer.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowSliders.aspx.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowSliders.aspx.designer.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\ShowSubconnectors.aspx.cs">
+      <DependentUpon>ShowSubconnectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\ShowSubconnectors.aspx.designer.cs">
+      <DependentUpon>ShowSubconnectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\UploadDocuments.aspx.cs">
+      <DependentUpon>UploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\UploadDocuments.aspx.designer.cs">
+      <DependentUpon>UploadDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FreeLancer\WithdrawalSummary.aspx.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FreeLancer\WithdrawalSummary.aspx.designer.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmpLogin.aspx.cs">
+      <DependentUpon>MarketingEmpLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmpLogin.aspx.designer.cs">
+      <DependentUpon>MarketingEmpLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\AddCase.aspx.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\AddCase.aspx.designer.cs">
+      <DependentUpon>AddCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\PayoutMonthWiseCaseWise.aspx.cs">
+      <DependentUpon>PayoutMonthWiseCaseWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\PayoutMonthWiseCaseWise.aspx.designer.cs">
+      <DependentUpon>PayoutMonthWiseCaseWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowBankCodes.aspx.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowBankCodes.aspx.designer.cs">
+      <DependentUpon>ShowBankCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCaseCountFromConnector.aspx.cs">
+      <DependentUpon>ShowCaseCountFromConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCaseCountFromConnector.aspx.designer.cs">
+      <DependentUpon>ShowCaseCountFromConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCaseCountFromFreelancer.aspx.cs">
+      <DependentUpon>ShowCaseCountFromFreelancer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCaseCountFromFreelancer.aspx.designer.cs">
+      <DependentUpon>ShowCaseCountFromFreelancer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCasesFromFreelancers.aspx.cs">
+      <DependentUpon>ShowCasesFromFreelancers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCasesFromFreelancers.aspx.designer.cs">
+      <DependentUpon>ShowCasesFromFreelancers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCasesFromConnector.aspx.cs">
+      <DependentUpon>ShowCasesFromConnector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowCasesFromConnector.aspx.designer.cs">
+      <DependentUpon>ShowCasesFromConnector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowDisbursedCases.aspx.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowDisbursedCases.aspx.designer.cs">
+      <DependentUpon>ShowDisbursedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowRejectedCases.aspx.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowRejectedCases.aspx.designer.cs">
+      <DependentUpon>ShowRejectedCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowSliders.aspx.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\ShowSliders.aspx.designer.cs">
+      <DependentUpon>ShowSliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MarketingEmp\WithdrawalSummary.aspx.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketingEmp\WithdrawalSummary.aspx.designer.cs">
+      <DependentUpon>WithdrawalSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterCustomer.aspx.cs">
+      <DependentUpon>RegisterCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterCustomer.aspx.designer.cs">
+      <DependentUpon>RegisterCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubconnectorLogin.aspx.cs">
+      <DependentUpon>SubconnectorLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubconnectorLogin.aspx.designer.cs">
+      <DependentUpon>SubconnectorLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\AddLead.aspx.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\AddLead.aspx.designer.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ApplyLoan.aspx.cs">
+      <DependentUpon>ApplyLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ApplyLoan.aspx.designer.cs">
+      <DependentUpon>ApplyLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\BecomeLoanAdvisor.aspx.cs">
+      <DependentUpon>BecomeLoanAdvisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\BecomeLoanAdvisor.aspx.designer.cs">
+      <DependentUpon>BecomeLoanAdvisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\CustomerProfile.aspx.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\CustomerProfile.aspx.designer.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ShowAllCases.aspx.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ShowAllCases.aspx.designer.cs">
+      <DependentUpon>ShowAllCases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ShowAppliedLoans.aspx.cs">
+      <DependentUpon>ShowAppliedLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ShowAppliedLoans.aspx.designer.cs">
+      <DependentUpon>ShowAppliedLoans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ShowLeads.aspx.cs">
+      <DependentUpon>ShowLeads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ShowLeads.aspx.designer.cs">
+      <DependentUpon>ShowLeads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\ShowPayouts.aspx.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\ShowPayouts.aspx.designer.cs">
+      <DependentUpon>ShowPayouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubConnector\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubConnector\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\boxicons.eot" />
+    <Content Include="assets\fonts\boxicons.ttf" />
+    <Content Include="assets\fonts\boxicons.woff" />
+    <Content Include="assets\fonts\boxicons.woff2" />
+    <Content Include="assets\fonts\fa-brands-400.eot" />
+    <Content Include="assets\fonts\fa-brands-400.ttf" />
+    <Content Include="assets\fonts\fa-brands-400.woff" />
+    <Content Include="assets\fonts\fa-brands-400.woff2" />
+    <Content Include="assets\fonts\fa-brands-400d41d.eot" />
+    <Content Include="assets\fonts\fa-regular-400.eot" />
+    <Content Include="assets\fonts\fa-regular-400.ttf" />
+    <Content Include="assets\fonts\fa-regular-400.woff" />
+    <Content Include="assets\fonts\fa-regular-400.woff2" />
+    <Content Include="assets\fonts\fa-regular-400d41d.eot" />
+    <Content Include="assets\fonts\fa-solid-900.eot" />
+    <Content Include="assets\fonts\fa-solid-900.ttf" />
+    <Content Include="assets\fonts\fa-solid-900.woff" />
+    <Content Include="assets\fonts\fa-solid-900.woff2" />
+    <Content Include="assets\fonts\fa-solid-900d41d.eot" />
+    <Content Include="assets\fonts\feathere8ab.eot" />
+    <Content Include="assets\fonts\feathere8ab.ttf" />
+    <Content Include="assets\fonts\feathere8ab.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="assets\fonts\materialdesignicons-webfonte910.eot" />
+    <Content Include="assets\fonts\materialdesignicons-webfonte910.ttf" />
+    <Content Include="assets\fonts\materialdesignicons-webfonte910.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfonte910.woff2" />
+    <Content Include="assets\fonts\remixicon7c01.eot" />
+    <Content Include="assets\fonts\remixicon7c01.ttf" />
+    <Content Include="assets\fonts\remixicon7c01.woff" />
+    <Content Include="assets\fonts\remixicon7c01.woff2" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="assets\fonts\weathericons-regular-webfontd41d.eot" />
+    <Content Include="Admin\Site.Master" />
+    <None Include="packages.config" />
+    <Content Include="SubConnector\Site.Master" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Uploads\ConnectorPics\" />
+    <Folder Include="Uploads\FreelancerPics\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59183</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59183/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets'))" />
+  </Target>
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

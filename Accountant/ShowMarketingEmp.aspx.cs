@@ -1,0 +1,48 @@
+﻿using BankaSpotNew.App_Code;
+using System;
+using System.Web.UI.WebControls;
+
+namespace BankaSpotNew.Accountant
+{
+    public partial class ShowMarketingEmp : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["acc"] == null)
+            {
+                Response.Redirect("../AccountantLogin.aspx");
+            }
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
+            if (GridRegion.Rows.Count > 0)
+            {
+                GridRegion.UseAccessibleHeader = true;
+                GridRegion.HeaderRow.TableSection = TableRowSection.TableHeader;
+                GridRegion.FooterRow.TableSection = TableRowSection.TableFooter;
+            }
+        }
+        private void BindGrid()
+        {
+            DataAccess oDataAccess = new DataAccess();
+            var result = oDataAccess.QuerySPListDynamic<Marketing_Employee_Add>("sp_getallmarketemp_foradmin");
+            if (result != null)
+            {
+                GridRegion.DataSource = result;
+                GridRegion.DataBind();
+            }
+            if (GridRegion.Rows.Count > 0)
+            {
+                GridRegion.UseAccessibleHeader = true;
+                GridRegion.HeaderRow.TableSection = TableRowSection.TableHeader;
+                GridRegion.FooterRow.TableSection = TableRowSection.TableFooter;
+            }
+        }
+        protected void btedt_Click(object sender, EventArgs e)
+        {
+            Button Btn = (Button)sender;
+            Response.Redirect($"MakeMarketEmpWithdrawal.aspx?id={Btn.CommandArgument}");
+        }
+    }
+}

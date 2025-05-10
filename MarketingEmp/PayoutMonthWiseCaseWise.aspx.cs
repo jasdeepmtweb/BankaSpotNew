@@ -1,0 +1,115 @@
+﻿using BankaSpotNew.App_Code;
+using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.UI.WebControls;
+
+namespace BankaSpotNew.MarketingEmp
+{
+    public partial class PayoutMonthWiseCaseWise : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["memp"] == null)
+            {
+                Response.Redirect("../MarketingEmpLogin.aspx");
+            }
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
+            if (GridCase.Rows.Count > 0)
+            {
+                GridCase.UseAccessibleHeader = true;
+                GridCase.HeaderRow.TableSection = TableRowSection.TableHeader;
+                GridCase.FooterRow.TableSection = TableRowSection.TableFooter;
+            }
+        }
+
+        private void BindGrid()
+        {
+            Marketing_Employee_Add oMarketing_Employee_Add = Session["memp"] as Marketing_Employee_Add;
+
+            var parameters = new DynamicParameters();
+            parameters.Add("UserId", oMarketing_Employee_Add.Id);
+            parameters.Add("UserType", "MEMP");
+            DataAccess oDataAccess = new DataAccess();
+            var result = oDataAccess.QuerySPListDynamic<Payouts_Add>("sp_getpayoutsby_useridtype", parameters);
+            if (result != null)
+            {
+                List<Payouts_Add> payouts_s = result.ToList();
+
+                for (int i = 0; i < payouts_s.Count; i++)
+                {
+                    parameters.Add("Id", payouts_s[i].CaseId);
+                    oDataAccess = new DataAccess();
+                    var CaseDetail = oDataAccess.QuerySingleOrDefaultSPDynamic<Case_Add>("sp_getcaseby_id", parameters);
+
+                    if (payouts_s[i].ext1 == null)
+                    {
+                        payouts_s[i].ext1 = "Pending";
+                        payouts_s[i].ext2 = "Pending";
+                    }
+                    else
+                    {
+                        if (payouts_s[i].ext1.Equals("0"))
+                        {
+                            payouts_s[i].ext1 = "Pending";
+                            payouts_s[i].ext2 = "Pending";
+                        }
+                        else
+                        {
+                            payouts_s[i].ext1 = "Paid";
+                        }
+                    }
+
+
+                    if (CaseDetail != null)
+                    {
+                        payouts_s[i].AmountDisbursed = Convert.ToDouble(CaseDetail.ext5);
+                        payouts_s[i].CustomerName = CaseDetail.Name;
+                        payouts_s[i].ProductName = CaseDetail.ProductName;
+                    }
+                }
+
+                GridCase.DataSource = result;
+                GridCase.DataBind();
+            }
+            if (GridCase.Rows.Count > 0)
+            {
+                GridCase.UseAccessibleHeader = true;
+                GridCase.HeaderRow.TableSection = TableRowSection.TableHeader;
+                GridCase.FooterRow.TableSection = TableRowSection.TableFooter;
+            }
+        }
+        protected void btedt_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", button.CommandArgument);
+            DataAccess oDataAccess = new DataAccess();
+            var result = oDataAccess.QuerySingleOrDefaultSPDynamic<Case_Add>("sp_getcaseby_id", parameters);
+
+            if (result != null)
+            {
+                lblAddress.Text = result.Address;
+                lblAmountRequired.Text = "" + result.AmountReq;
+                lblCity.Text = result.City;
+                //lblConnector.Text = result.ConnectorName;
+                lblMobile.Text = result.MobileNo;
+                lblMonthlyIncome.Text = result.MonthlyIncome;
+                lblName.Text = result.Name;
+                lblProfile.Text = result.CustomerProfile;
+                lblProReq.Text = result.ProductName;
+
+                ShowModalPopup();
+            }
+        }
+        protected void ShowModalPopup()
+        {
+            hdnShowModal.Value = "1";
+        }
+    }
+}

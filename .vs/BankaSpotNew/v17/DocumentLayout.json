@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|f:\\jasdeep\\websites\\bankaspotnew\\employee\\editcasestatus.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|solutionrelative:employee\\editcasestatus.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|f:\\jasdeep\\websites\\bankaspotnew\\employee\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|solutionrelative:employee\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|f:\\jasdeep\\websites\\bankaspotnew\\employee\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|solutionrelative:employee\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|F:\\Jasdeep\\WebSites\\BankaSpotNew\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C97030E1-B1BB-4D73-BB6F-D53CB003D27E}|BankaSpotNew.csproj|solutionrelative:index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EditCaseStatus.aspx.cs",
+              "DocumentMoniker": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\EditCaseStatus.aspx.cs",
+              "RelativeDocumentMoniker": "Employee\\EditCaseStatus.aspx.cs",
+              "ToolTip": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\EditCaseStatus.aspx.cs",
+              "RelativeToolTip": "Employee\\EditCaseStatus.aspx.cs",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAvwCgBAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T10:08:38.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.aspx.cs",
+              "DocumentMoniker": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\Dashboard.aspx.cs",
+              "RelativeDocumentMoniker": "Employee\\Dashboard.aspx.cs",
+              "ToolTip": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\Dashboard.aspx.cs",
+              "RelativeToolTip": "Employee\\Dashboard.aspx.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAADgvykAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T10:02:41.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.aspx",
+              "DocumentMoniker": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\Dashboard.aspx",
+              "RelativeDocumentMoniker": "Employee\\Dashboard.aspx",
+              "ToolTip": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Employee\\Dashboard.aspx",
+              "RelativeToolTip": "Employee\\Dashboard.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-03-15T10:02:37.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.aspx",
+              "DocumentMoniker": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Index.aspx",
+              "RelativeDocumentMoniker": "Index.aspx",
+              "ToolTip": "F:\\Jasdeep\\WebSites\\BankaSpotNew\\Index.aspx",
+              "RelativeToolTip": "Index.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-01-22T12:11:01.93Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

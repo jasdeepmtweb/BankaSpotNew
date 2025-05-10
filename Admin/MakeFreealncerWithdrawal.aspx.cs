@@ -1,0 +1,86 @@
+﻿using BankaSpotNew.App_Code;
+using Dapper;
+using System;
+using System.Web.UI;
+
+namespace BankaSpotNew.Admin
+{
+    public partial class MakeFreealncerWithdrawal : System.Web.UI.Page
+    {
+        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["id"] == null)
+            {
+                Response.Redirect("../BranchLogin.aspx");
+            }
+            if (Request.QueryString["id"] == null)
+            {
+                Response.Redirect("ShowFreelancers.aspx");
+            }
+            if (!IsPostBack)
+            {
+                GetPayoutsAndWithdrawal(Request.QueryString["id"]);
+            }
+        }
+        private void GetPayoutsAndWithdrawal(string Id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("UserId", Id);
+            parameters.Add("UserType", "Freelancer");
+            DataAccess oDataAccess = new DataAccess();
+            var result = oDataAccess.QuerySingleOrDefaultSPDynamic<dynamic>("sp_getpayoutssum_byuseridtype", parameters);
+            if (result != null)
+            {
+                txtTotalPayout.Text = result.Payouts.ToString();
+            }
+
+            parameters.Add("UserId", Id);
+            oDataAccess = new DataAccess();
+            var withdrawal = oDataAccess.QuerySingleOrDefaultSPDynamic<dynamic>("sp_gettotalwithdrawal_forfreelancer", parameters);
+            if (withdrawal != null)
+            {
+                txtTotalWithdrawal.Text = withdrawal.WithDrawal.ToString();
+            }
+
+            txtAvailableBalance.Text = "" + (Convert.ToDouble(txtTotalPayout.Text) - Convert.ToDouble(txtTotalWithdrawal.Text));
+        }
+        protected void BtnSubmit_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                try
+                {
+                    DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
+                    if (Request.QueryString["id"] != null)
+                    {
+                        if (Convert.ToDouble(txtWithdrawal.Text) < Convert.ToDouble(txtAvailableBalance.Text))
+                        {
+                            var parameters = new DynamicParameters();
+                            parameters.Add("p_UserId", Request.QueryString["id"]);
+                            parameters.Add("p_WithdrawalDate", indianTime);
+                            parameters.Add("p_WithdrawalAmount", txtWithdrawal.Text);
+                            parameters.Add("p_WithdrawalType", "withdrawal");
+                            parameters.Add("p_Description", "-");
+                            parameters.Add("p_Remarks", txtRemarks.Text);
+
+                            DataAccess oDataAccess = new DataAccess();
+                            oDataAccess.ExecuteSPDynamic("sp_insert_freelancerwithdrawal", parameters);
+
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Done');window.location.href='ShowFreelancers.aspx';", true);
+                        }
+                        else
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Enter Valid Amount');", true);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var errorLogger = new Log("ErrorLog.txt");
+                    errorLogger.LogError(ex);
+                }
+            }
+        }
+    }
+}
